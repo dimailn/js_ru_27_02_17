@@ -34,7 +34,8 @@ class ArticleList extends Component {
 }
 
 ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    enumerableComponent: PropTypes.func
 }
 
 export default accordeon(ArticleList)
