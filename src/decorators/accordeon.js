@@ -15,6 +15,7 @@ export default (CustomComponent) => class DecoratedComponent extends React.Compo
     return entity.id === this.state.openEntityId
   }
 
+  //с этим ты перемудрил, даже мне было сложно разобратся, это плохо. Старайся писать более простой код
   enumerableComponent = entity => {
     return React.cloneElement(
       CustomComponent.prototype.enumerableComponent(entity),
