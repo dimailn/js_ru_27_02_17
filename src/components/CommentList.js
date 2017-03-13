@@ -16,6 +16,7 @@ class CommentList extends Component {
         this.size = this.container.getBoundingClientRect()
     }
 
+    //форму стоит вынести в отдельный компонент
     state = {
         name: '',
         comment: ''
