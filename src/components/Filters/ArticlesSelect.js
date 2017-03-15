@@ -8,6 +8,7 @@ class SelectFilter extends Component {
         articles: PropTypes.array.isRequired
     };
 
+    //почему не вынес значения в стор?
     state = {
         selected: null
     }
