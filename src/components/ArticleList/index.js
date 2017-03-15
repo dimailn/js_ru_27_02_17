@@ -10,6 +10,7 @@ class ArticleList extends Component {
         const {articles, toggleOpenItem, isItemOpened} = this.props
 
         const articleComponents = articles
+            //ок, но еще лучше делать фильтрацию в коннекте
             .filter(this.filterArticles)
             .map(article => <li key={article.id}>
             <Article article={article}
