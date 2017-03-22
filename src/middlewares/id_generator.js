@@ -3,6 +3,7 @@ export default store => next => action => {
   {
     const id = new Date().getTime()
     action = {...action}
+    //лучше не мутировать payload, мало-ли что там станут передавать
     action.payload.id = id
   }
   next(action)
