@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import NewCommentForm from './NewCommentForm'
+import { loadAllComments } from '../AC/'
+import { connect } from 'react-redux'
+import Loader from './Loader'
 
 class CommentList extends Component {
 
@@ -18,10 +21,15 @@ class CommentList extends Component {
 //        console.log('---', this.size)
         return (
             <div ref={this.getContainerRef}>
-                <a href="#" onClick={toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
+                <a href="#" onClick={this.toggleOpen}>{isOpen ? 'hide' : 'show'} comments</a>
                 {this.getBody()}
             </div>
         )
+    }
+
+    toggleOpen = (e) => {
+        this.props.toggleOpen(e)
+        if(!this.props.loaded) this.props.loadAllComments()
     }
 
     getContainerRef = (ref) => {
@@ -32,8 +40,10 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {article, isOpen} = this.props
+        const {article, isOpen, loading} = this.props
         if (!isOpen) return null
+
+        if (loading) return <Loader />
 
         if (!article.comments || !article.comments.length) {
             return <div>
@@ -56,4 +66,10 @@ class CommentList extends Component {
     }
 }
 
-export default toggleOpen(CommentList)
+const mapStateToProps = (state) => { 
+    return {
+        loading: state.comments.loading,
+        loaded: state.comments.loaded
+    }
+}
+export default connect(mapStateToProps, { loadAllComments })(toggleOpen(CommentList))
