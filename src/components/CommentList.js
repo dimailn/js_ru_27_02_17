@@ -69,6 +69,7 @@ class CommentList extends Component {
 const mapStateToProps = (state) => { 
     return {
         loading: state.comments.loading,
+        //ты загрузил для одной статьи, а если вторую откроешь?
         loaded: state.comments.loaded
     }
 }
